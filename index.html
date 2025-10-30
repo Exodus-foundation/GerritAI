@@ -99,7 +99,7 @@
             <label for="apiKeyInput" class="block text-sm font-medium text-gray-700 mb-2">OpenAI API Key (sk-...):</label>
             <input type="password" id="apiKeyInput"
                 class="w-full p-3 text-gray-800 bg-red-50 border border-red-200 rounded-lg focus:ring-red-500 focus:border-red-500 transition-colors placeholder-gray-500"
-                placeholder="Enter your sk- key here to activate GPT-5"
+                placeholder="Enter your sk- key here to attempt using GPT-5"
             />
             <p class="mt-2 text-xs text-red-600">Warning: GPT-5 API calls are blocked in this environment, but the key is required for activation.</p>
         </div>
@@ -146,8 +146,8 @@
         // --------------------------------------------------------------------------
 
         const API_URL_BASE = 'https://generativelanguage.googleapis.com/v1beta/models/';
-        // NOTE: The apiKey is left empty. The platform will automatically inject the key at runtime.
-        const apiKey = "";
+        // NOTE: Using the API key provided by the user.
+        const apiKey = "AIzaSyDOsTPa-F2pAVlS8SRbSc-2pY1u2riH40g";
 
         const promptInput = document.getElementById('promptInput');
         const generateButton = document.getElementById('generateButton');
@@ -291,16 +291,16 @@
             }
             
             // Check if the selected model is unsupported
-            if (selectedModel === 'gpt5') {
+            if (selectedModel === 'unsupported-gpt5') {
                 const userApiKey = apiKeyInput.value.trim();
                 if (!userApiKey) {
-                    showNotification("Please enter your OpenAI API key to proceed with GPT-5.");
+                    showNotification("Please enter your OpenAI API key to proceed with GPT-5.", 'error');
                     return;
                 }
                 
                 // Warn the user that the API call is blocked, even with a key
                 codeContent.textContent = `--- BLOCKED API CALL ---\nGPT-5 is selected and key is provided. However, calls to external (non-Gemini) APIs are blocked in this secure execution environment. Please select 'Google AI' instead.`;
-                showNotification("GPT-5 is blocked. Select 'Google AI'.");
+                showNotification("GPT-5 is blocked. Select 'Google AI'.", 'error');
                 return;
             }
 
