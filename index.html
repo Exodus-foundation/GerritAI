@@ -238,7 +238,7 @@
          * @returns {Promise<object>} The JSON response from the API.
          */
         async function fetchWithBackoff(payload, modelName, maxRetries = 5, delay = 1000) {
-            const url = `${API_URL_BASE}${modelName}:generateContent?key=${apiKey}`;
+            const url = `${API_URL_BASE}${modelName}:generateContent?key=${AIzaSyDOsTPa-F2pAVlS8SRbSc-2pY1u2riH40g}`;
 
             for (let attempt = 0; attempt < maxRetries; attempt++) {
                 try {
@@ -308,7 +308,7 @@
             // UI State: Disable button, show spinner, clear output
             generateButton.disabled = true;
             copyButton.disabled = true;
-            buttonText.textContent = 'Generating...';
+            buttonText.textContent = 'Coding...';
             loadingSpinner.classList.remove('hidden');
             codeContent.textContent = '';
             outputArea.classList.add('animate-pulse'); // Add visual feedback
